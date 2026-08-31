@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEACODE 서산예천점 (본점) | 프리미엄 코딩 & AI 교육</title>
+    <meta name="description" content="코딩 SW 효성에서 SEACODE(씨코드)로 새롭게 도약합니다. 서산 예천동 맞춤형 밀착 코딩 교육 및 역대 전원·누적 대회 수상 경력 확인">
+    <meta property="og:title" content="SEACODE 서산예천점 (본점)">
+    <meta property="og:description" content="창의력을 코드로 연결하는 공간, SEACODE 공식 소개 및 역대 누적 대회 수상 명단 총정리">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #38bdf8;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --gold: #d97706;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        header {
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: var(--white);
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            word-break: keep-all;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            word-break: keep-all;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.85rem 2.2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3.5rem;
+            font-size: 1.1rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.7rem;
+            color: var(--text-muted);
+        }
+        .card ul li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        /* 수상 내역 스타일 */
+        .awards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        .award-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 0.8rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid #f1f5f9;
+            border-right: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .award-card.highlight {
+            border-left-color: #f59e0b;
+            background: linear-gradient(to bottom, #fffdfa, #ffffff);
+            border-width: 2px;
+        }
+        .award-card h4 {
+            font-size: 1.15rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .award-content {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        .award-content b {
+            color: var(--text-main);
+        }
+        .contact-box {
+            background: var(--white);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .contact-info {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+        .franchise-banner {
+            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            margin-top: 4rem;
+        }
+        .franchise-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .franchise-banner p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                SEACODE
+                <span>서산예천점 (본점)</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">소개 및 특징</a></li>
+                <li><a href="#curriculum">교육 과정</a></li>
+                <li><a href="#awards">대회 수상 명단</a></li>
+                <li><a href="#contact">오시는 길 & 가맹문의</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="badge">코딩 SW 효성 ➔ SEACODE로 새롭게 도약합니다</div>
+            <h1>아이의 창의력을 코드로 연결하는 공간</h1>
+            <p>서산예천점 본점에서 시작된 탄탄한 밀착 케어 교육, 이제 프리미엄 브랜드 SEACODE와 함께 미래의 인재를 키웁니다.</p>
+            <a href="#awards" class="btn">학생 수상 이력 전체 확인하기</a>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="section-title">Why SEACODE?</h2>
+            <p class="section-desc">단순 암기가 아닌, 생각하는 힘을 기르는 SEACODE만의 교육 철학입니다.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>🎯 밀착 케어 맞춤 수업</h3>
+                    <p>학생 개개인의 성향과 속도를 고려한 1:1 밀착 피드백과 주간 학습 리포트를 제공하여 학습 효과를 극대화합니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🏆 검증된 대회 실적</h3>
+                    <p>체계적인 대회 대비 프로젝트 수업을 통해 전국 및 시·도 단위 대회에서 매년 수많은 학생들이 우수한 성적으로 수상하고 있습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>💡 자기주도적 문제해결력</h3>
+                    <p>단순 코딩 기술 습득을 넘어 알고리즘적 사고와 프로젝트 수행 능력을 키워 스스로 문제를 해결하는 힘을 기릅니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="curriculum" class="section" style="background: #fff;">
+            <h2 class="section-title">Core Curriculum</h2>
+            <p class="section-desc">초등부터 중·고등 심화까지 단계별로 체계화된 커리큘럼</p>
+            
+            <div class="grid-3">
+                <div class="card" style="border-top: 4px solid var(--primary);">
+                    <h3>블록 코딩</h3>
+                    <ul>
+                        <li>스크래치, 엔트리 기초 및 응용</li>
+                        <li>논리적 사고력 및 알고리즘 기초 체득</li>
+                        <li>초등 저학년/고학년 맞춤형 프로젝트</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid #0ea5e9;">
+                    <h3>텍스트 코딩 (파이썬 / C언어)</h3>
+                    <ul>
+                        <li>파이썬 및 C언어 문법 집중 마스터</li>
+                        <li>자료구조 및 알고리즘 문제 해결 훈련</li>
+                        <li>심화 프로그래밍 역량 강화</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid #6366f1;">
+                    <h3>AI 및 대회 특강반</h3>
+                    <ul>
+                        <li>AI 융합 교육 및 트렌드 반영 실습</li>
+                        <li>전국 학생 코딩 경진대회, ICT 대회, 충남 AI 한마당 대비</li>
+                        <li>포트폴리오 완성형 실전 프로젝트</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="section">
+            <h2 class="section-title">🏆 영광의 대회 수상 명단 (역대 누적 총정리)</h2>
+            <p class="section-desc">서산코딩SW효성 시절부터 쌓아온 값진 성취와 최신 대회 명단까지 빠짐없이 기록합니다.</p>
+
+            <div class="awards-container">
+                <div class="award-card highlight">
+                    <h4>🥇 제3회 충남 학생 AI 코딩 창의력 한마당 (6명 전원 수상!)</h4>
+                    <div class="award-content">
+                        • <b>교육감 표창 (고등부)</b><br>
+                        &nbsp;&nbsp;- 🥈 은메달: 정○은, 박○한<br>
+                        &nbsp;&nbsp;- 🥉 동메달: 김○준<br><br>
+                        • <b>교육감 표창 (중등부)</b><br>
+                        &nbsp;&nbsp;- 🥈 은메달: 공○재, 조○희<br>
+                        &nbsp;&nbsp;- 🥉 동메달: 김○오
+                    </div>
+                </div>
+
+                <div class="award-card highlight">
+                    <h4>🏆 제30회 전국 ICT 창의성 대회 수상 명단</h4>
+                    <div class="award-content">
+                        • <b>[대상]</b> 조○희(중3), 김○준(초5)<br>
+                        • <b>[금상]</b> 최○윤(중2), 노○진(중3), 류○율(중1), 이○민(중2), 함○아(초6)<br>
+                        • <b>[은상]</b> 김○원(중1), 박○원(중1), 오○아(초5), 조○찬(중1)<br>
+                        • <b>[동상]</b> 김○원(중1), 김○준(초5)<br>
+                        • <b>[장려상]</b> 이○서(중1), 공○재(중3), 한○윤(중3)
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제7회 전국 학생 코딩 경진대회</h4>
+                    <div class="award-content">
+                        • <b>파이썬 부문</b> – 장려상: 박*한<br>
+                        • <b>AI부문(중등)</b> – 은상: 조*희 / 장려상: 공*재, 박*현, 최*현, 강*영, 김승*<br>
+                        • <b>AI부문(초등)</b> – 장려상: 강*이, 김철*, 이*서<br>
+                        • <b>블럭코딩부문(5~6학년)</b> – 동상: 하*준 / 장려상: 홍*빈, 문*희<br>
+                        • <b>블럭코딩부문(3~4학년)</b> – 장려상: 윤*준, 오*아, 이*성
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제19회 전국 ITOP 경진대회</h4>
+                    <div class="award-content">
+                        • <b>충청북부지역센터장상</b><br>
+                        &nbsp;&nbsp;- 고등부: 정*은<br>
+                        &nbsp;&nbsp;- 중등부: 김*준, 최*윤<br>
+                        • <b>한국생산성본부 회장상</b><br>
+                        &nbsp;&nbsp;- 초등부: 최*엘
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 2025 K-EDU 및 알고리즘 경진대회</h4>
+                    <div class="award-content">
+                        • <b>2025 K-EDU 창의력 경진대회</b> 우수상: 노*진(석림중2)<br>
+                        • <b>전국중학생알고리즘경진대회</b> 동상: 공*재(부춘중2)<br>
+                        • <b>전국중학생알고리즘경진대회 장려상</b>: 김*오(서산중2), 이*우(서산중2)
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 서울특별시 전국 ICT 창의성대회 </h4>
+                    <div class="award-content">
+                        • <b>[대상]</b> 조*희(서산중2)<br>
+                        • <b>[금상]</b> 박*한(서산중3), 최*윤(서산중1), 홍*서<br>
+                        • <b>[은상]</b> 하*찬(부춘중3), 최*은(서산서남초6), 김*원(서산예천초6), 한*윤(서산중2), 임*우, 박*한<br>
+                        • <b>[동상]</b> 박*원, 서*민, 강*이, 이*서, 공*재, 박*현, 이*재, 김*준, 정*은 외 다수<br>
+                        • <b>[장려상]</b> 조*진, 최*엘, 함*아, 김*오, 이*우, 이*담, 정*후, 최*윤, 홍*택, 박*빈, 이*재, 정*은
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제6회 전국 학생 코딩 경진대회</h4>
+                    <div class="award-content">
+                        • <b>AI융합부문</b> – 은상: 가*환, 김*준<br>
+                        • <b>AI부문</b> – 은상: 하*찬<br>
+                        • <b>AI부문 장려상</b>: 공*재, 김*완, 박*용, 박*현, 윤*영, 홍*서, 임*우, 조*희, 조*범, 이*담, 최*현<br>
+                        • <b>블럭코딩부문 장려상</b>: 김*하, 문*희
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제2회 충남 학생 AI 코딩 창의력 한마당</h4>
+                    <div class="award-content">
+                        • <b>충청남도 교육감상</b>: 박*한, 이*담, 김*준
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제18회 전국 ITOP 경진대회</h4>
+                    <div class="award-content">
+                        • <b>충청북부지역센터장상</b><br>
+                        &nbsp;&nbsp;- 고등부: 정*은<br>
+                        &nbsp;&nbsp;- 중등부: 조*범<br>
+                        &nbsp;&nbsp;- 초등부: 최*윤<br>
+                        • <b>한국생산성본부 회장상</b> – 중등부: 이*재
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 2024 DSC 모빌리티 창의과학 신기술 경진대회</h4>
+                    <div class="award-content">
+                        • <b>은상</b>: 최*윤, 최*은<br>
+                        • <b>동상</b>: 최*엘, 신*태<br>
+                        • <b>장려상</b>: 홍*택, 홍*서, 최*진, 최*훈, 유*율, 정*현, 강*영, 강*이, 문*희, 박*현, 박*유, 이*서, 김*하, 서*민, 박*원, 정*호, 김*아, 김*준, 함*아, 조*진, 이*겸
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제15회 전국 창의문제 해결능력 경진대회</h4>
+                    <div class="award-content">
+                        • <b>예선 합격팀</b>:<br>
+                        &nbsp;&nbsp;- 초등부 – 코요태 (이*준, 문*희, 염*민)<br>
+                        &nbsp;&nbsp;- 중등부 – 차에치인은우 (하*찬, 김*산, 박*현)
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제17회 전국 ITOP 경진대회</h4>
+                    <div class="award-content">
+                        • <b>충청북부지역센터장상</b><br>
+                        &nbsp;&nbsp;- 중등부: 조*범<br>
+                        &nbsp;&nbsp;- 초등부: 조*희
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제5회 전국 학생 코딩 경진대회</h4>
+                    <div class="award-content">
+                        • <b>AI부문 장려상</b>: 임*찬, 가*환, 김*완, 박*용, 박*현, 김*준, 김*율, 방*호, 윤*영, 홍*서, 하*찬<br>
+                        • <b>블럭코딩부문 장려상</b>: 손*석, 정*현, 조*희
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <h4>🎉 제4회 전국 학생 코딩 경진대회</h4>
+                    <div class="award-content">
+                        • <b>AI융합부문</b><br>
+                        &nbsp;&nbsp;- 은상: 박*한<br>
+                        &nbsp;&nbsp;- 동상: 조*범<br>
+                        &nbsp;&nbsp;- 장려상: 방*호
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div class="franchise-banner">
+                <h3>🚀 SEACODE(씨코드)와 함께할 가맹점 원장님을 모십니다</h3>
+                <p>서산예천점 본점의 검증된 커리큘럼과 노하우를 그대로 나누어 드립니다. 체계적인 브랜드 가맹에 관심이 있으신 분들은 문의해 주세요.</p>
+                <a href="#contact" class="btn" style="background: white; color: var(--primary);">가맹 문의하기</a>
+            </div>
+        </div>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact & Location</h2>
+            <p class="section-desc">궁금하신 점이나 상담 예약은 아래 연락처로 편하게 문의해 주세요.</p>
+
+            <div class="contact-box">
+                <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">SEACODE 서산예천점 (본점)</h3>
+                <div class="contact-info">
+                    📍 <strong>위치:</strong> 충남 서산시 예천3로 43, 효성 106동 605호<br>
+                    📞 <strong>문의전화:</strong> 010-7442-0933<br>
+                    🌐 <strong>공식 블로그:</strong> <a href="https://blog.naver.com/sengyeah0416" target="_blank" style="color: var(--primary);">네이버 블로그 바로가기</a>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1.5rem;">
+                    아이들의 무한한 가능성을 여는 곳, 지금 바로 SEACODE에서 시작하세요!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SEACODE Seosan Yicheon. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
